@@ -8,12 +8,14 @@ import ElectronicsProduct from "./components/pages/ElectronicsProduct";
 import SingleView from "./components/pages/SingeView";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "./components/theme";
+import NavBar from "./components/content/NavBar";
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/product" component={ElectronicsProduct} />

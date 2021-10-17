@@ -6,7 +6,6 @@ import { data, multiData } from "../../temp/carousel";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 
 const PreviousBtn = (props) => {
-  // console.log(props);
   const { className, onClick } = props;
   return (
     <div className={className} onClick={onClick}>
@@ -26,9 +25,9 @@ const NextBtn = (props) => {
 const carouselProperties = {
   prevArrow: <PreviousBtn />,
   nextArrow: <NextBtn />,
-  slidesToShow: 5,
+  slidesToShow: 7,
   infinite: false,
-  slidesToScroll: 1,
+  slidesToScroll: 6,
   //   centerMode: true,
   centerPadding: "170px",
   responsive: [

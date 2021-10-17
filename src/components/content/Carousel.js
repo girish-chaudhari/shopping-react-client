@@ -29,7 +29,7 @@ const Carousel = () => {
         autoplay
         autoplaySpeed={2000}
         // dots
-        initialSlide={2}
+        initialSlide={1}
         infinite
         prevArrow={<PreviousBtn />}
         nextArrow={<NextBtn />}

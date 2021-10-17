@@ -30,8 +30,8 @@ const carouselProperties = {
   dots: false,
   infinite: false,
   speed: 500,
-  slidesToShow: 5,
-  slidesToScroll: 5,
+  slidesToShow: 7,
+  slidesToScroll: 6,
   initialSlide: 0,
   responsive: [
     {
