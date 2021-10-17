@@ -2,7 +2,6 @@ import "./App.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import NavBar from "./components/content/NavBar";
 import Footer from "./components/content/Footer";
 import Home from "./components/home/Home";
 import ElectronicsProduct from "./components/pages/ElectronicsProduct";
@@ -15,8 +14,6 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <NavBar />
-        {/* <Home /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/product" component={ElectronicsProduct} />

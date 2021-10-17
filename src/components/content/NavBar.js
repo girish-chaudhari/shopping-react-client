@@ -1,105 +1,170 @@
-import React, { useState, useEffect } from "react";
-import { DropdownMenu } from "../material";
-import { AppBar, Container, Box, Typography } from "@mui/material";
-// import "../custom/header.scss";o
-import { Button } from "@mui/material";
-const NavBar = () => {
-  const [loginModal, setLoginModal] = useState(false);
-  const [progress, setProgress] = useState(0);
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
+import { Badge } from "@mui/material";
+import { Search, ShoppingCartOutlined } from "@mui/icons-material";
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { makeStyles } from "@mui/styles";
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+const useStyles = makeStyles((theme) => ({
+  searchIcon: {
+    color: "white",
+    fontSize: 16,
+    height: 30,
+    width: 40,
+    padding: 5,
+    background: "#a4bffd",
+    cursor: "pointer",
+    transition: "0.2s ease-in-out",
+    "&:hover": {
+      background: "coral",
+    },
+  },
+}));
 
+const Container = styled.div`
+  height: 111px;
+  position: sticky;
+  top: 0;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  z-index: 999;
+`;
+
+const Wrapper = styled.div`
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Left = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+`;
+
+const Language = styled.span`
+  font-size: 14px;
+  cursor: pointer;
+`;
+
+const SearchContainer = styled.div`
+  border: 0.5px solid lightgray;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  border-radius: 3px;
+`;
+
+const Input = styled.input`
+  border: none;
+  outline: none;
+  padding: 5px;
+  letter-spacing: 0.1em;
+  width: 100%;
+`;
+
+const Center = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
+const Logo = styled.h1`
+  font-weight: bold;
+`;
+const Right = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const MenuItem = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
+`;
+
+const loading = keyframes`
+    0% {
+      width: 0;
+      background: #a28089;
+    }
+
+    30% {
+      width: 40%;
+      background: #a0d2eb;
+    }
+
+    50% {
+      width: 45%;
+      background: #ffa8b6;
+    }
+
+    75% {
+      width: 75%;
+      background: #d0bdf4;
+    }
+
+    100% {
+      width: 100%;
+      background: #494d5f;
+    }
+
+
+`;
+
+const LoadingBar = styled.div`
+  position: relative;
+  /* top: 0; */
+  width: 100%;
+  height: 4px;
+  background: #f1f1f1;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    animation: ${loading} 4s ease-in-out;
+  }
+`;
+
+const Navbar = () => {
+  const classes = useStyles();
   return (
-    <AppBar color="secondary" position="sticky">
-      <header>
-        <Container>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            my={3}
-          >
-            <Typography component={Box} fontSize={23} fontWeight={600}>
-              BigBasket
-            </Typography>
-            <Box>
-              <Button variant="contained" color="primary">
-                <DropdownMenu
-                  menu={
-                    <a
-                      style={{ color: "white", fontFamily: "Graphik" }}
-                      className="loginButton"
-                      onClick={() => setLoginModal(true)}
-                    >
-                      Login
-                    </a>
-                  }
-                  menus={[
-                    {
-                      label: "My Profile",
-                      href: "",
-                      icon: null,
-                    },
-                    { label: "Plus Zone", href: "", icon: null },
-                    { label: "Orders", href: "", icon: null },
-                    { label: "Wishlist", href: "", icon: null },
-                    { label: "Rewards", href: "", icon: null },
-                    { label: "Gift Cards", href: "", icon: null },
-                  ]}
-                  firstMenu={
-                    <div className="firstmenu">
-                      <span>New Customer?</span>
-                      <a style={{ color: "#2874f0" }}>Sign Up</a>
-                    </div>
-                  }
-                />
-              </Button>
-            </Box>
-          </Box>
-        </Container>
-
-        {/* <div className="dropdown">
-                <a href="#" id="cart">
-                  <div className="cart-group-icon">
-                    <i class="fa fa-shopping-cart cart-icon"></i>
-                    <span class="badge">3</span>
-                  </div>
-                </a>
-                <div class="container">
-                  <div class="shopping-cart">
-                    <div class="shopping-cart-header">
-                      <div className="cart-group-icon">
-                        <i class="fa fa-shopping-cart cart-icon"></i>
-                        <span class="badge">3</span>
-                      </div>
-                      <div class="shopping-cart-total">
-                        <span class="lighter-text">Total:</span>
-                        <span class="main-color-text">$2,229.97</span>
-                      </div>
-                    </div>
-
-                    <a href="#" class="button">
-                      Checkout
-                    </a>
-                  </div>
-                </div>
-              </div> */}
-      </header>
-    </AppBar>
+    <>
+      <Container>
+        <Wrapper>
+          <Left>
+            <Logo>BasketShop</Logo>
+          </Left>
+          <Center>
+            <SearchContainer>
+              <Input placeholder="Search" />
+              <Search className={classes.searchIcon} />
+            </SearchContainer>
+          </Center>
+          <Right>
+            <MenuItem>REGISTER</MenuItem>
+            <MenuItem>SIGN IN</MenuItem>
+            <MenuItem>
+              <Badge badgeContent={4} color="secondary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </MenuItem>
+            {/* <Language>EN</Language> */}
+          </Right>
+        </Wrapper>
+        <LoadingBar />
+      </Container>
+    </>
   );
 };
 
-export default NavBar;
+export default Navbar;
